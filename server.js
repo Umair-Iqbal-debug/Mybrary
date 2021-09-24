@@ -7,10 +7,11 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
+app.use(express.urlencoded({ limit: "10mb", extended: false }));
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/author");
+const bookRouter = require("./routes/book");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -20,8 +21,10 @@ app.use(express.static("public"));
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+
 app.use("/", indexRouter);
 app.use("/authors", authorRouter);
+app.use("/books", bookRouter);
 
 const db = mongoose.connection;
 db.on("error", (error) => console.log(error));
