@@ -5,7 +5,10 @@
 <div>Page Count: <%= book.pageCount %></div>
 <div>Publish Date: <%= book.publishDate.toDateString() %></div>
 <div>Description:<%= book.description %></div>
-
-<a href="/books/<%= book._id %>/edit ">Edit</a>
-<%- include("../partials/deleteForm",{url: `/books/${book._id}`}) %>
-<a href="/authors/<%= book.author._id %> ">View Author</a>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/books/<%= book._id %>/edit ">Edit</a>
+  <%- include("../partials/deleteForm",{url: `/books/${book._id}`}) %>
+  <a class="btn btn-primary" href="/authors/<%= book.author._id %> "
+    >View Author</a
+  >
+</div>
